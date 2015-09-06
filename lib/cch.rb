@@ -1,4 +1,7 @@
+require 'yaml'
+
 require 'cch/version'
+require 'cch/setup'
 
 module Cch
   class << self
