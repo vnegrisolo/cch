@@ -14,7 +14,7 @@ module Cch
       private
 
       def log_command(command)
-        puts "=> command='#{command}'" if Setup.config['debug']
+        puts "=> command='#{command}'" if Setup.debug
       end
     end
   end

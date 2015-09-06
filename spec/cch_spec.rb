@@ -9,7 +9,13 @@ RSpec.describe Cch do
     let(:files) { %w(f1.rb f2.rb) }
 
     before do
+      allow(Cch::Setup).to receive(:configure)
       allow(Cch::Watcher).to receive(:new) { watcher }
+    end
+
+    it 'configure the setup' do
+      expect(Cch::Setup).to receive(:configure)
+      subject
     end
 
     it 'invokes the watcher' do

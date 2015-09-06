@@ -1,17 +1,23 @@
 module Cch
   class Setup
     class << self
-      def config
-        @config ||= load_config('cch.yml')
+      ATTRIBUTES = %i(debug watcher_commands)
+      attr_accessor(*ATTRIBUTES)
+
+      def configure
+        load_setup_files(%w(config/Cchfile Cchfile))
+        puts "=> setup\n#{inspect}" if debug
+        self
+      end
+
+      def inspect
+        ATTRIBUTES.map { |f| "     #{f} = #{send(f)}" }.join("\n")
       end
 
       private
 
-      def load_config(name)
-        file = File.expand_path("../../../config/#{name}", __FILE__)
-        config = YAML.load_file(file)
-        puts "=> config='#{config}'" if config['debug']
-        config['cch']
+      def load_setup_files(files)
+        files.each { |f| load(f, true) if File.exist?(f) }
       end
     end
   end

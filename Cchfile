@@ -1,0 +1,3 @@
+Cch::Setup.tap do |setup|
+  setup.debug = true
+end
