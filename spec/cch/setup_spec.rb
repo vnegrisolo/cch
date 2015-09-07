@@ -16,5 +16,15 @@ RSpec.describe Cch::Setup do
         'git diff --name-only ..master'
       ])
     end
+
+    it 'configures the runners' do
+      expect(setup.runners[:rubocop]).to be_a Cch::Runner
+      expect(setup.runners[:rspec]).to be_a Cch::Runner
+    end
+
+    it 'has the runners on' do
+      expect(setup.runners[:rubocop].on).to be true
+      expect(setup.runners[:rspec].on).to be true
+    end
   end
 end

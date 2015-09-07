@@ -1,7 +1,7 @@
 module Cch
   class Setup
     class << self
-      ATTRIBUTES = %i(debug watcher_commands)
+      ATTRIBUTES = %i(debug watcher_commands runners)
       attr_accessor(*ATTRIBUTES)
 
       def configure
@@ -12,6 +12,16 @@ module Cch
 
       def inspect
         ATTRIBUTES.map { |f| "     #{f} = #{send(f)}" }.join("\n")
+      end
+
+      def add_runner(runner)
+        @runners ||= {}
+        @runners[runner] = Runner.new(runner)
+        yield @runners[runner] if block_given?
+      end
+
+      def run(runner)
+        runners.fetch(runner).on = true
       end
 
       private

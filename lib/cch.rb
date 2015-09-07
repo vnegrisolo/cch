@@ -5,6 +5,7 @@ require 'cch/version'
 require 'cch/setup'
 require 'cch/commands/shell'
 require 'cch/watcher'
+require 'cch/runner'
 
 module Cch
   class << self
@@ -12,7 +13,14 @@ module Cch
       puts "=> running cch with args='#{args}'"
       Setup.configure
 
-      Watcher.new.files
+      files = Watcher.new.files
+      runners.each { |runner| runner.run(files) if runner.on }
+    end
+
+    private
+
+    def runners
+      Setup.runners.values
     end
   end
 end

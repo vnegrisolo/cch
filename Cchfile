@@ -1,3 +1,6 @@
 Cch::Setup.tap do |setup|
   setup.debug = true
+
+  setup.run :rspec
+  setup.run :rubocop
 end
