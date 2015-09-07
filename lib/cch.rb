@@ -1,5 +1,6 @@
 require 'yaml'
 
+require 'cch/extensions/string'
 require 'cch/version'
 require 'cch/setup'
 require 'cch/commands/shell'
