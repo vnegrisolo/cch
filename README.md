@@ -1,5 +1,6 @@
 # cch
 CCH - Check on changes
+[![Build Status](https://travis-ci.org/vnegrisolo/cch.svg)](https://travis-ci.org/vnegrisolo/cch)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cch`. To experiment with that code, run `bin/console` for an interactive prompt.
 

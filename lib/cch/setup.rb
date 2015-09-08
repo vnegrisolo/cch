@@ -1,7 +1,7 @@
 module Cch
   class Setup
     class << self
-      ATTRIBUTES = %i(debug watcher_commands runners)
+      ATTRIBUTES = [:debug, :watcher_commands, :runners]
       attr_accessor(*ATTRIBUTES)
 
       def configure

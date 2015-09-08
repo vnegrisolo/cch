@@ -1,4 +1,15 @@
 language: ruby
+cache: bundler
 rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - 2.2.0
   - 2.2.2
+git:
+  depth: 1
 before_install: gem install bundler -v 1.10.6
+script:
+  - bundle exec yard
+  - bundle exec rubocop
+  - bundle exec rspec

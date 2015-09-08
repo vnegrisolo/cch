@@ -6,6 +6,6 @@ class String
   private
 
   def color_code(color)
-    %i(black red green yellow blue pink cyan white no_color).find_index(color)
+    [:black, :red, :green, :yellow, :blue, :pink, :cyan, :white, :no_color].find_index(color)
   end
 end

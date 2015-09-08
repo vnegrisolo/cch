@@ -14,4 +14,4 @@ end
 
 RSpec::Core::RakeTask.new(:spec)
 
-task default: %i(yard rubocop spec)
+task default: [:yard, :rubocop, :spec]
