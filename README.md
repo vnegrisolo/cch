@@ -4,6 +4,7 @@ CCH - Check on changes for ruby projects
 ## gem status
 
 [![Build Status](https://travis-ci.org/vnegrisolo/cch.svg)](https://travis-ci.org/vnegrisolo/cch)
+[![Gem Version](https://badge.fury.io/rb/cch.svg)](http://badge.fury.io/rb/cch)
 [![Code Climate](https://codeclimate.com/github/vnegrisolo/cch/badges/gpa.svg)](https://codeclimate.com/github/vnegrisolo/cch)
 [![Test Coverage](https://codeclimate.com/github/vnegrisolo/cch/badges/coverage.svg)](https://codeclimate.com/github/vnegrisolo/cch/coverage)
 [![Dependency Status](https://gemnasium.com/vnegrisolo/cch.svg)](https://gemnasium.com/vnegrisolo/cch)

@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Vinicius Ferreira Negrisolo']
   spec.email         = ['vinicius.negrisolo@gmail.com']
 
-  spec.summary       = 'cch - check on changes'
-  spec.description   = 'cch - check on changes'
+  spec.summary       = 'cch - check on changes for ruby projects'
+  spec.description   = 'cch - check on changes for ruby projects'
   spec.homepage      = 'https://github.com/vnegrisolo/cch'
   spec.license       = 'MIT'
 
