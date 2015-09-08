@@ -7,8 +7,8 @@ RSpec.describe Cch do
     let(:args) { [] }
     let(:watcher) { double files: files }
     let(:files) { %w(f1.rb f2.rb) }
-    let(:runners) { { rspec: rspec_runner } }
-    let(:rspec_runner) { double on: true, run: true }
+    let(:runners) { { runner: runner_runner } }
+    let(:runner_runner) { double on: true, run: true }
 
     before do
       allow(Cch::Setup).to receive(:configure)
@@ -27,7 +27,7 @@ RSpec.describe Cch do
     end
 
     it 'calls the runners' do
-      expect(rspec_runner).to receive(:run).with(files)
+      expect(runner_runner).to receive(:run).with(files)
       subject
     end
   end

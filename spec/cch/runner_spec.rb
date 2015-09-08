@@ -3,23 +3,9 @@ require 'spec_helper'
 RSpec.describe Cch::Runner do
   subject(:runner) { described_class.new(:rubocop) }
 
-  before { runner.watch(/\.rb$/) }
+  let(:rubocop_pattern) { double }
 
-  describe '#filter_files' do
-    subject { runner.filter_files(files) }
-
-    let(:files) { %w(f1.rb f2.rb f3.txt) }
-
-    before do
-      allow(File).to receive(:exist?).with('f1.rb') { true }
-      allow(File).to receive(:exist?).with('f2.rb') { false }
-      allow(File).to receive(:exist?).with('f3.txt') { true }
-    end
-
-    it 'filters files' do
-      is_expected.to eq(%w(f1.rb))
-    end
-  end
+  before { runner.watch(rubocop_pattern) }
 
   describe '#run?' do
     subject { runner.run?(files) }
@@ -57,6 +43,11 @@ RSpec.describe Cch::Runner do
 
     context 'when the run? is true' do
       let(:run?) { true }
+
+      it 'filters files' do
+        expect(runner).to receive(:filter_files).with(files, [rubocop_pattern])
+        subject
+      end
 
       it 'verifies' do
         expect(runner).to receive(:system_command).with('bundle exec rubocop f1.rb f2.rb')
