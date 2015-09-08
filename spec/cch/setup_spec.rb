@@ -19,11 +19,13 @@ RSpec.describe Cch::Setup do
 
     it 'configures the runners' do
       expect(setup.runners[:rubocop]).to be_a Cch::Runner
+      expect(setup.runners[:haml_lint]).to be_a Cch::Runner
       expect(setup.runners[:rspec]).to be_a Cch::Runner
     end
 
     it 'has the runners on' do
       expect(setup.runners[:rubocop].on).to be true
+      expect(setup.runners[:haml_lint].on).to be false
       expect(setup.runners[:rspec].on).to be true
     end
   end

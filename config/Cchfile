@@ -12,6 +12,10 @@ Cch::Setup.tap do |setup|
     runner.watch /\.rb$/
   end
 
+  setup.add_runner :haml_lint do |runner|
+    runner.watch /\.haml$/
+  end
+
   setup.add_runner :rspec do |runner|
     runner.watch /_spec\.rb$/
   end
