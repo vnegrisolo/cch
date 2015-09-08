@@ -18,5 +18,6 @@ Cch::Setup.tap do |setup|
 
   setup.add_runner :rspec do |runner|
     runner.watch /_spec\.rb$/
+    runner.watch /^lib\/(.+)\.rb$/, -> (m) { %W(spec/#{m[1]}_spec.rb spec/#{m[1]}_spec.rb) }
   end
 end

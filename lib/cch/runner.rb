@@ -10,11 +10,11 @@ module Cch
       @name = name
       @command = "bundle exec #{name} %{files}"
       @on = false
-      @patterns = []
+      @patterns = {}
     end
 
-    def watch(pattern)
-      @patterns << pattern
+    def watch(pattern, transform = nil)
+      @patterns[pattern] = transform
     end
 
     def run(files)
