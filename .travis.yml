@@ -16,3 +16,5 @@ script:
 deploy:
   provider: rubygems
   api_key: 4672b2d03693ff646f79dfb823e02a60
+  on:
+    tags: true
