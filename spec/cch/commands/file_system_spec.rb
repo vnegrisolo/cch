@@ -28,7 +28,8 @@ RSpec.describe Cch::Commands::FileSystem do
     end
 
     context 'when the patterns transform files' do
-      let(:patterns) { { /(.+)\.txt$/ => -> (m) { %W(texts/#{m[1]}.txt) } } }
+      let(:patterns) { { /(.+)\.txt$/ => pattern_block } }
+      let(:pattern_block) { proc { |m| %W(texts/#{m[1]}.txt) } }
 
       it 'filters files' do
         is_expected.to eq(%w(texts/f3.txt))
