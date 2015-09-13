@@ -8,6 +8,9 @@ require 'cch/commands/file_system'
 require 'cch/watcher'
 require 'cch/runner'
 
+require 'cch/config/watchers'
+require 'cch/config/runners'
+
 module Cch
   class << self
     def run(args)
