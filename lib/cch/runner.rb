@@ -6,9 +6,9 @@ module Cch
     attr_reader :name, :patterns
     attr_accessor :command, :on
 
-    def initialize(name)
+    def initialize(name, options = {})
       @name = name
-      @command = "bundle exec #{name} %{files}"
+      @command = "bundle exec #{options[:gem] || name} %{files}"
       @on = false
       @patterns = {}
     end

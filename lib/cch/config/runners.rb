@@ -3,7 +3,7 @@ Cch::Setup.tap do |setup|
     runner.watch(/\.rb$/)
   end
 
-  setup.add_runner :haml_lint do |runner|
+  setup.add_runner :haml_lint, gem: 'haml-lint' do |runner|
     runner.watch(/\.haml$/)
   end
 

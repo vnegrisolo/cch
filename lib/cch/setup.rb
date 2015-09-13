@@ -14,9 +14,9 @@ module Cch
         ATTRIBUTES.map { |f| "     #{f} = #{send(f)}" }.join("\n")
       end
 
-      def add_runner(runner)
+      def add_runner(runner, options = {})
         @runners ||= {}
-        @runners[runner] = Runner.new(runner)
+        @runners[runner] = Runner.new(runner, options)
         yield @runners[runner] if block_given?
       end
 
