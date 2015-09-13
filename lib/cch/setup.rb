@@ -5,7 +5,7 @@ module Cch
       attr_accessor(*ATTRIBUTES)
 
       def configure
-        load_setup_files(%w(config/Cchfile Cchfile))
+        load_setup
         puts "=> setup\n#{inspect}" if debug
         self
       end
@@ -26,8 +26,8 @@ module Cch
 
       private
 
-      def load_setup_files(files)
-        files.each { |f| load(f, true) if File.exist?(f) }
+      def load_setup(file = 'Cchfile')
+        load(file, true) if File.exist?(file)
       end
     end
   end
