@@ -13,18 +13,20 @@ require 'cch/config/runners'
 
 module Cch
   class << self
-    def run(args)
+    def run(args = [])
       puts "=> running cch with args='#{args}'"
       Setup.configure
 
-      files = Watcher.new.files
-      runners.each { |runner| runner.run(files) if runner.on }
+      files = Watcher.files
+      runners(args).each { |runner| runner.run(files) }
     end
 
     private
 
-    def runners
-      Setup.runners.values
+    def runners(names)
+      filter = { on?: true }
+      filter.merge!(name: names) if names.size > 0
+      Runner.where(filter)
     end
   end
 end

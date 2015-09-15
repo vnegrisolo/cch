@@ -1,11 +1,40 @@
 require 'spec_helper'
 
 RSpec.describe Cch::Runner do
-  subject(:runner) { described_class.new(:runner) }
+  subject(:runner) { described_class.new(:foo_runner) }
 
-  let(:runner_pattern) { double }
+  describe '.all' do
+    subject { described_class.all }
 
-  before { runner.watch(runner_pattern) }
+    let(:runners) { { foo: foo_runner, bar: bar_runner } }
+    let(:foo_runner) { double }
+    let(:bar_runner) { double }
+
+    before { allow(Cch::Setup).to receive(:runners) { runners } }
+
+    it { is_expected.to eq [foo_runner, bar_runner] }
+  end
+
+  describe '.where' do
+    subject { described_class.where(options) }
+
+    let(:foo_runner) { double 'foo', on: true, name: :foo }
+    let(:bar_runner) { double 'bar', on: false, name: :bar }
+
+    before { allow(described_class).to receive(:all) { [foo_runner, bar_runner] } }
+
+    context 'when filtering by on?' do
+      let(:options) { { on?: true } }
+
+      it { is_expected.to eq [foo_runner] }
+    end
+
+    context 'when filtering by name' do
+      let(:options) { { name: :bar } }
+
+      it { is_expected.to eq [bar_runner] }
+    end
+  end
 
   describe '#run?' do
     subject { runner.run?(files) }
@@ -23,6 +52,10 @@ RSpec.describe Cch::Runner do
 
   describe '#run' do
     subject { runner.run(files) }
+
+    let(:runner_pattern) { double }
+
+    before { runner.watch(runner_pattern) }
 
     let(:files) { %w(f1.rb f2.rb) }
     let(:filtered_files) { files }
@@ -51,7 +84,7 @@ RSpec.describe Cch::Runner do
       end
 
       it 'verifies' do
-        expect(runner).to receive(:system_command).with('bundle exec runner f1.rb f2.rb')
+        expect(runner).to receive(:system_command).with('bundle exec foo_runner f1.rb f2.rb')
         subject
       end
     end
