@@ -1,13 +1,29 @@
 require 'spec_helper'
 
 RSpec.describe Cch::Watcher do
-  let(:watcher) { described_class.new(commands) }
-  let(:commands) { [git_status, git_diff] }
-  let(:git_status) { 'git status' }
-  let(:git_diff) { 'git diff' }
+  describe '.files' do
+    subject { described_class.files }
+
+    let(:watcher) { double files: files }
+    let(:files) { double }
+
+    before do
+      allow(described_class).to receive(:new) { watcher }
+      subject
+    end
+
+    it 'delegates to an instance' do
+      is_expected.to eq files
+    end
+  end
 
   describe '#files' do
     subject { watcher.files }
+
+    let(:watcher) { described_class.new(commands) }
+    let(:commands) { [git_status, git_diff] }
+    let(:git_status) { 'git status' }
+    let(:git_diff) { 'git diff' }
 
     before { allow(watcher).to receive(:backtiq_command) { files } }
 

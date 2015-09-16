@@ -6,6 +6,19 @@ module Cch
     attr_reader :name, :patterns
     attr_accessor :command, :on
 
+    def self.all
+      Setup.runners.values
+    end
+
+    def self.where(options = {})
+      runners = all
+      runners = runners.select(&:on) if options[:on?]
+      if (names = [options[:name]].flatten.compact).size > 0
+        runners = runners.select { |r| names.include?(r.name) }
+      end
+      runners
+    end
+
     def initialize(name, options = {})
       @name = name
       @command = "bundle exec #{options[:gem] || name} %{files}"

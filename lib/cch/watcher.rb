@@ -2,6 +2,10 @@ module Cch
   class Watcher
     include Commands::Shell
 
+    def self.files
+      new.files
+    end
+
     def initialize(commands = nil)
       @commands = commands || Setup.watcher_commands
     end
