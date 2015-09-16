@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cch (0.2.0)
+    cch (0.3.0)
 
 GEM
   remote: https://rubygems.org/
