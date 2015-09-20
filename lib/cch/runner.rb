@@ -31,7 +31,7 @@ module Cch
     end
 
     def run(files)
-      puts "=> running #{name.to_s.color(:black, :green)}"
+      Cch.logger.info("running #{name.to_s.color(:black, :green)}")
       filtered_files = filter_files(files, patterns)
       return unless run?(filtered_files)
 
@@ -39,6 +39,7 @@ module Cch
     end
 
     def run?(files)
+      Cch.logger.info("#{files.size.to_s.color(:yellow)} files=#{files}")
       files.size > 0
     end
   end

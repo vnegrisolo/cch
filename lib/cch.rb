@@ -7,14 +7,21 @@ require 'cch/commands/shell'
 require 'cch/commands/file_system'
 require 'cch/watcher'
 require 'cch/runner'
+require 'cch/loggers/level'
+require 'cch/loggers/stdout'
+require 'cch/logger'
 
 require 'cch/config/watchers'
 require 'cch/config/runners'
 
 module Cch
   class << self
+    def logger
+      @logger ||= Logger.new(:info, Loggers::Stdout.new)
+    end
+
     def run(args = [])
-      puts "=> running cch with args='#{args}'"
+      logger.info("running cch with args='#{args}'")
       Setup.configure
 
       files = Watcher.files

@@ -6,9 +6,7 @@ module Cch
           find_matched_files(files, pattern, transform)
         end
 
-        filtered_files = existing_files(filtered_files)
-        puts "=> #{filtered_files.size.to_s.color(:yellow)} files=#{filtered_files}"
-        filtered_files
+        existing_files(filtered_files)
       end
 
       private
