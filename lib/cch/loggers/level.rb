@@ -1,12 +1,14 @@
 module Cch
   module Loggers
     class Level
-      LEVELS = %i(debug info error)
+      LEVELS = [:debug, :info, :error]
 
       def self.all
         return @levels if @levels
 
-        @levels = LEVELS.map { |level| [level, new(level)] }.to_h
+        @levels = {}
+        LEVELS.each { |level| @levels[level] = new(level) }
+        @levels
       end
 
       attr_reader :name

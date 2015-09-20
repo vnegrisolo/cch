@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Cch::Loggers::Level do
   describe '.all' do
-    it { expect(described_class.all.keys).to eq %i(debug info error) }
+    it { expect(described_class.all.keys).to eq [:debug, :info, :error] }
   end
 
   describe '#allowed?' do

@@ -16,8 +16,12 @@ require 'cch/config/runners'
 
 module Cch
   class << self
+    def logger
+      @logger ||= Logger.new(:info, Loggers::Stdout.new)
+    end
+
     def run(args = [])
-      puts "=> running cch with args='#{args}'"
+      logger.info("running cch with args='#{args}'")
       Setup.configure
 
       files = Watcher.files

@@ -1,12 +1,12 @@
 module Cch
   class Setup
     class << self
-      ATTRIBUTES = [:debug, :watcher_commands, :runners]
+      ATTRIBUTES = [:watcher_commands, :runners]
       attr_accessor(*ATTRIBUTES)
 
       def configure
         load_setup
-        puts "=> setup\n#{inspect}" if debug
+        Cch.logger.debug("setup\n#{inspect}")
         self
       end
 
