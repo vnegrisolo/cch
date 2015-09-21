@@ -5,6 +5,9 @@ module Cch
       attr_accessor(*ATTRIBUTES)
 
       def configure
+        require 'cch/config/watchers'
+        require 'cch/config/runners'
+
         load_setup
         Cch.logger.debug("setup\n#{inspect}")
         self
@@ -17,11 +20,11 @@ module Cch
       def add_runner(runner, options = {})
         @runners ||= {}
         @runners[runner] = Runner.new(runner, options)
-        yield @runners[runner] if block_given?
+        yield @runners.fetch(runner) if block_given?
       end
 
-      def run(runner)
-        runners.fetch(runner).on = true
+      def run(runners)
+        Array(runners).each { |runner| @runners.fetch(runner).on = true }
       end
 
       private

@@ -7,7 +7,7 @@ module Cch
     end
 
     def initialize(commands = nil)
-      @commands = commands || Setup.watcher_commands
+      @commands = commands || Cch.setup.watcher_commands
     end
 
     def files

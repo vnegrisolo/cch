@@ -7,7 +7,7 @@ module Cch
     attr_accessor :command, :on
 
     def self.all
-      Setup.runners.values
+      Cch.setup.runners.values
     end
 
     def self.where(options = {})

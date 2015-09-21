@@ -1,4 +1,4 @@
-Cch::Setup.tap do |setup|
+Cch.setup.tap do |setup|
   setup.add_runner :rubocop do |runner|
     runner.watch(/\.rb$/)
   end
