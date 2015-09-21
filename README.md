@@ -16,18 +16,28 @@ CCH - Check on changes for ruby projects
 gem install cch
 ```
 
-Create a `Cchfile` on your project folder:
+Generates a `Cchfile` for project configuration:
+
+```shell
+cch_install
+```
+
+Configure through the `Cchfile` the way you want to run **cch**:
 
 ```ruby
-Cch.setup.tap do |setup|
-  setup.run [:rubocop, :haml_lint, :rspec]
-end
+Cch.setup.run [:rubocop, :haml_lint, :rspec]
 ```
 
 ## Usage
 
 ```shell
 cch
+```
+
+Or on run time, you can specify the runners:
+
+```shell
+cch rspec rubocop
 ```
 
 ## Development

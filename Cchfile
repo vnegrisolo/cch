@@ -1,3 +1,1 @@
-Cch.setup.tap do |setup|
-  setup.run [:rubocop, :rspec]
-end
+Cch.setup.run [:rubocop, :rspec]
