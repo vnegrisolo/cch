@@ -17,10 +17,15 @@ module Cch
       @logger ||= Logger.new(:info, Loggers::Stdout.new)
     end
 
+    def setup
+      return @setup if @setup
+      @setup = Setup
+      Setup.configure
+      @setup
+    end
+
     def run(args = [])
       logger.info("running cch with args='#{args}'")
-      Setup.configure
-
       files = Watcher.files
       runners(args).each { |runner| runner.run(files) }
     end

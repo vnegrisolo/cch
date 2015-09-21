@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 RSpec.describe Cch do
+  describe '.logger' do
+    it { expect(described_class.logger).to be_a Cch::Logger }
+  end
+
+  describe '.setup' do
+    it { expect(described_class.setup).to eq Cch::Setup }
+  end
+
   describe '.run' do
     subject { described_class.run(args) }
 
@@ -9,14 +17,9 @@ RSpec.describe Cch do
     let(:runners) { [] }
 
     before do
-      allow(Cch::Setup).to receive(:configure)
       allow(Cch::Watcher).to receive(:files) { files }
       allow(Cch::Runner).to receive(:where) { runners }
       subject
-    end
-
-    it 'configures the setup' do
-      expect(Cch::Setup).to have_received(:configure)
     end
 
     it 'calls the watcher' do

@@ -19,7 +19,7 @@ gem install cch
 Create a `Cchfile` on your project folder:
 
 ```ruby
-Cch::Setup.tap do |setup|
+Cch.setup.tap do |setup|
   setup.run [:rubocop, :haml_lint, :rspec]
 end
 ```

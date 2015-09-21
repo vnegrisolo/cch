@@ -1,4 +1,4 @@
-Cch::Setup.tap do |setup|
+Cch.setup.tap do |setup|
   setup.watcher_commands = [
     'git diff --name-only',
     'git diff --name-only --staged',
