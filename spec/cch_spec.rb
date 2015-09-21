@@ -30,7 +30,7 @@ RSpec.describe Cch do
       let(:args) { [] }
 
       it 'fetches all the runners' do
-        expect(Cch::Runner).to have_received(:where).with(on?: true)
+        expect(Cch::Runner).to have_received(:where).with(on?: true, name: [])
       end
     end
 

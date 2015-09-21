@@ -33,9 +33,7 @@ module Cch
     private
 
     def runners(names)
-      filter = { on?: true }
-      filter.merge!(name: names) if names.size > 0
-      Runner.where(filter)
+      Runner.where(on?: true, name: names)
     end
   end
 end
