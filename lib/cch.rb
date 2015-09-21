@@ -2,7 +2,6 @@ require 'yaml'
 
 require 'cch/extensions/string'
 require 'cch/version'
-require 'cch/setup'
 require 'cch/commands/shell'
 require 'cch/commands/file_system'
 require 'cch/watcher'
@@ -10,9 +9,7 @@ require 'cch/runner'
 require 'cch/loggers/level'
 require 'cch/loggers/stdout'
 require 'cch/logger'
-
-require 'cch/config/watchers'
-require 'cch/config/runners'
+require 'cch/setup'
 
 module Cch
   class << self

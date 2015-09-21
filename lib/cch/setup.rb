@@ -5,6 +5,9 @@ module Cch
       attr_accessor(*ATTRIBUTES)
 
       def configure
+        require 'cch/config/watchers'
+        require 'cch/config/runners'
+
         load_setup
         Cch.logger.debug("setup\n#{inspect}")
         self
