@@ -20,9 +20,7 @@ Create a `Cchfile` on your project folder:
 
 ```ruby
 Cch::Setup.tap do |setup|
-  setup.run :rubocop
-  setup.run :haml_lint
-  setup.run :rspec
+  setup.run [:rubocop, :haml_lint, :rspec]
 end
 ```
 
