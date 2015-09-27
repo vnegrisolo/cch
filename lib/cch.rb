@@ -14,7 +14,7 @@ require 'cch/setup'
 module Cch
   class << self
     def logger
-      @logger ||= Logger.new(:info, Loggers::Stdout.new)
+      @logger ||= Logger.new
     end
 
     def setup

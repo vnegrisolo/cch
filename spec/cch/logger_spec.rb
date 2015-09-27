@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Cch::Logger do
-  subject(:logger) { described_class.new(:info, implementation) }
+  subject(:logger) { described_class.new(threshold: :info, implementation: implementation) }
 
   let(:implementation) { double log: true }
 

@@ -4,8 +4,9 @@ module Cch
     attr_accessor(*ATTRIBUTES)
 
     def configure
-      require 'cch/config/watchers'
-      require 'cch/config/runners'
+      %w(logger watchers runners).each do |config_file|
+        require "cch/config/#{config_file}"
+      end
 
       load('Cchfile', true) if File.exist?('Cchfile')
 
