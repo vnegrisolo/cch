@@ -9,8 +9,9 @@ RSpec.describe Cch::Runner do
     let(:runners) { { foo: foo_runner, bar: bar_runner } }
     let(:foo_runner) { double }
     let(:bar_runner) { double }
+    let(:setup) { double runners: runners }
 
-    before { allow(Cch::Setup).to receive(:runners) { runners } }
+    before { allow(Cch).to receive(:setup) { setup } }
 
     it { is_expected.to eq [foo_runner, bar_runner] }
   end

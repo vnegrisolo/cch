@@ -6,6 +6,6 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 
 File.open('Cchfile', 'w') do |file|
   file.write <<STRING
-# Cch.setup.run [:rubocop, :rspec]
+  Cch.setup.run [:rubocop, :haml_lint, :rspec]
 STRING
 end

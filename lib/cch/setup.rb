@@ -1,37 +1,29 @@
 module Cch
   class Setup
-    class << self
-      ATTRIBUTES = [:watcher_commands, :runners]
-      attr_accessor(*ATTRIBUTES)
+    ATTRIBUTES = [:watcher_commands, :runners]
+    attr_accessor(*ATTRIBUTES)
 
-      def configure
-        require 'cch/config/watchers'
-        require 'cch/config/runners'
+    def configure
+      require 'cch/config/watchers'
+      require 'cch/config/runners'
 
-        load_setup
-        Cch.logger.debug("setup\n#{inspect}")
-        self
-      end
+      load('Cchfile', true) if File.exist?('Cchfile')
 
-      def inspect
-        ATTRIBUTES.map { |f| "     #{f} = #{send(f)}" }.join("\n")
-      end
+      Cch.logger.debug("setup\n#{inspect}")
+    end
 
-      def add_runner(runner, options = {})
-        @runners ||= {}
-        @runners[runner] = Runner.new(runner, options)
-        yield @runners.fetch(runner) if block_given?
-      end
+    def inspect
+      ATTRIBUTES.map { |f| "     #{f} = #{send(f)}" }.join("\n")
+    end
 
-      def run(runners)
-        Array(runners).each { |runner| @runners.fetch(runner).on = true }
-      end
+    def add_runner(runner, options = {})
+      @runners ||= {}
+      @runners[runner] = Runner.new(runner, options)
+      yield @runners.fetch(runner) if block_given?
+    end
 
-      private
-
-      def load_setup(file = 'Cchfile')
-        load(file, true) if File.exist?(file)
-      end
+    def run(runners)
+      Array(runners).each { |runner| @runners.fetch(runner).on = true }
     end
   end
 end

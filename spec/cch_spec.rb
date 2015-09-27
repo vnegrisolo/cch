@@ -6,7 +6,7 @@ RSpec.describe Cch do
   end
 
   describe '.setup' do
-    it { expect(described_class.setup).to eq Cch::Setup }
+    it { expect(described_class.setup).to be_a Cch::Setup }
   end
 
   describe '.run' do

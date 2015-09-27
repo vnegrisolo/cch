@@ -2,7 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Cch::Setup do
   describe '.configure' do
-    subject(:setup) { described_class.configure }
+    subject(:setup) { Cch.setup }
+
+    before { setup.configure }
 
     it 'configures the watch_commands' do
       expect(setup.watcher_commands).to eq([
