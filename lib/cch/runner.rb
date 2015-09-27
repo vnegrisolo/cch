@@ -31,15 +31,16 @@ module Cch
     end
 
     def run(files)
-      Cch.logger.info("running #{name.to_s.color(:black, :green)}")
-      filtered_files = filter_files(files, patterns)
-      return unless run?(filtered_files)
+      files = filter_files(files, patterns)
+      return unless run?(files)
 
-      system_command(command % { files: filtered_files.join(' ') })
+      system_command(command % { files: files.join(' ') })
     end
 
     def run?(files)
-      Cch.logger.info("#{files.size.to_s.color(:yellow)} files=#{files}")
+      message = "running #{name.to_s.color(:black, :green)}"
+      message << " for #{files.size.to_s.color(:yellow)} files=#{files}"
+      Cch.logger.info(message)
       files.size > 0
     end
   end

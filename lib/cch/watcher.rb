@@ -12,7 +12,7 @@ module Cch
 
     def files
       files = @commands.flat_map { |command| backtiq_command(command) }.compact.sort.uniq
-      Cch.logger.info("watched files='#{files}'")
+      Cch.logger.info("watching #{files.size.to_s.color(:yellow)} files=#{files}")
       files
     end
   end

@@ -22,7 +22,6 @@ module Cch
     end
 
     def run(args = [])
-      logger.info("running cch with args='#{args}'")
       setup.configure
 
       files = Watcher.files

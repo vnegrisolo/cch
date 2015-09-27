@@ -9,11 +9,11 @@ module Cch
 
       load('Cchfile', true) if File.exist?('Cchfile')
 
-      Cch.logger.debug("setup\n#{inspect}")
+      Cch.logger.debug("setup={#{inspect}}")
     end
 
     def inspect
-      ATTRIBUTES.map { |f| "     #{f} = #{send(f)}" }.join("\n")
+      ATTRIBUTES.map { |f| "#{f}=#{send(f)}" }.join(', ')
     end
 
     def add_runner(runner, options = {})
