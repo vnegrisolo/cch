@@ -1,12 +1,12 @@
-Cch.setup.add_runner :rubocop do |runner|
+Cch::Runner.configure :rubocop do |runner|
   runner.watch(/\.rb$/)
 end
 
-Cch.setup.add_runner :haml_lint, gem: 'haml-lint' do |runner|
+Cch::Runner.configure :haml_lint, gem: 'haml-lint' do |runner|
   runner.watch(/\.haml$/)
 end
 
-Cch.setup.add_runner :rspec do |runner|
+Cch::Runner.configure :rspec do |runner|
   runner.watch(/_spec\.rb$/)
 
   runner.watch(%r{^spec/spec_helper.rb$}, proc { %w(spec) })

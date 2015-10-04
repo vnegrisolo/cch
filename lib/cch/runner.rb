@@ -3,21 +3,35 @@ module Cch
     include Commands::Shell
     include Commands::FileSystem
 
+    class << self
+      attr_accessor :runners
+
+      def configure(runner, options = {})
+        @runners ||= {}
+        @runners[runner] = Runner.new(runner, options)
+        yield @runners.fetch(runner) if block_given?
+      end
+
+      def run(runners)
+        Array(runners).each { |runner| @runners.fetch(runner).on = true }
+      end
+
+      def all
+        runners.values
+      end
+
+      def where(options = {})
+        runners = all
+        runners = runners.select(&:on) if options[:on?]
+        if (names = [options[:name]].flatten.compact).size > 0
+          runners = runners.select { |r| names.include?(r.name) }
+        end
+        runners
+      end
+    end
+
     attr_reader :name, :patterns
     attr_accessor :command, :on
-
-    def self.all
-      Cch.setup.runners.values
-    end
-
-    def self.where(options = {})
-      runners = all
-      runners = runners.select(&:on) if options[:on?]
-      if (names = [options[:name]].flatten.compact).size > 0
-        runners = runners.select { |r| names.include?(r.name) }
-      end
-      runners
-    end
 
     def initialize(name, options = {})
       @name = name
