@@ -1,4 +1,4 @@
-Cch.setup.watcher_commands = [
+Cch::Watcher.commands = [
   'git diff --name-only',
   'git diff --name-only --staged',
   'git ls-files --others --exclude-standard',

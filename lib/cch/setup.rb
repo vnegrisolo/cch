@@ -1,6 +1,6 @@
 module Cch
   class Setup
-    ATTRIBUTES = [:watcher_commands, :runners]
+    ATTRIBUTES = [:runners]
     attr_accessor(*ATTRIBUTES)
 
     def configure
