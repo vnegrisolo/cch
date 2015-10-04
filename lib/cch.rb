@@ -14,26 +14,18 @@ require 'cch/setup'
 module Cch
   class << self
     def logger
-      @logger ||= Logger.new(:info, Loggers::Stdout.new)
+      @logger ||= Logger.new
     end
 
     def setup
-      return @setup if @setup
-      @setup = Setup
-      Setup.configure
-      @setup
+      @setup ||= Setup.new
     end
 
     def run(args = [])
-      logger.info("running cch with args='#{args}'")
+      setup.configure
+
       files = Watcher.files
-      runners(args).each { |runner| runner.run(files) }
-    end
-
-    private
-
-    def runners(names)
-      Runner.where(on?: true, name: names)
+      Runner.where(on?: true, name: args).each { |runner| runner.run(files) }
     end
   end
 end

@@ -3,21 +3,35 @@ module Cch
     include Commands::Shell
     include Commands::FileSystem
 
+    class << self
+      attr_accessor :runners
+
+      def configure(runner, options = {})
+        @runners ||= {}
+        @runners[runner] = Runner.new(runner, options)
+        yield @runners.fetch(runner) if block_given?
+      end
+
+      def run(runners)
+        Array(runners).each { |runner| @runners.fetch(runner).on = true }
+      end
+
+      def all
+        runners.values
+      end
+
+      def where(options = {})
+        runners = all
+        runners = runners.select(&:on) if options[:on?]
+        if (names = [options[:name]].flatten.compact).size > 0
+          runners = runners.select { |r| names.include?(r.name) }
+        end
+        runners
+      end
+    end
+
     attr_reader :name, :patterns
     attr_accessor :command, :on
-
-    def self.all
-      Cch.setup.runners.values
-    end
-
-    def self.where(options = {})
-      runners = all
-      runners = runners.select(&:on) if options[:on?]
-      if (names = [options[:name]].flatten.compact).size > 0
-        runners = runners.select { |r| names.include?(r.name) }
-      end
-      runners
-    end
 
     def initialize(name, options = {})
       @name = name
@@ -31,15 +45,16 @@ module Cch
     end
 
     def run(files)
-      Cch.logger.info("running #{name.to_s.color(:black, :green)}")
-      filtered_files = filter_files(files, patterns)
-      return unless run?(filtered_files)
+      files = filter_files(files, patterns)
+      return unless run?(files)
 
-      system_command(command % { files: filtered_files.join(' ') })
+      system_command(command % { files: files.join(' ') })
     end
 
     def run?(files)
-      Cch.logger.info("#{files.size.to_s.color(:yellow)} files=#{files}")
+      message = "running #{name.to_s.color(:black, :green)}"
+      message << " for #{files.size.to_s.color(:yellow)} files=#{files}"
+      Cch.logger.info(message)
       files.size > 0
     end
   end

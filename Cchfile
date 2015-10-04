@@ -1,1 +1,1 @@
-Cch.setup.run [:rubocop, :rspec]
+Cch::Runner.run [:rubocop, :rspec]

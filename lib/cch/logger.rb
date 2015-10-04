@@ -2,9 +2,9 @@ module Cch
   class Logger
     attr_accessor :threshold, :implementation
 
-    def initialize(threshold, implementation)
-      @threshold = threshold
-      @implementation = implementation
+    def initialize(options = {})
+      @threshold = options[:threshold]
+      @implementation = options[:implementation]
     end
 
     Loggers::Level.all.each do |level_name, level|

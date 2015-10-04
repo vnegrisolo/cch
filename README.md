@@ -25,7 +25,7 @@ cch_install
 Configure through the `Cchfile` the way you want to run **cch**:
 
 ```ruby
-Cch.setup.run [:rubocop, :haml_lint, :rspec]
+Cch::Runner.run [:rubocop, :haml_lint, :rspec]
 ```
 
 ## Usage

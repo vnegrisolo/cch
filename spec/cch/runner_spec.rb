@@ -3,18 +3,6 @@ require 'spec_helper'
 RSpec.describe Cch::Runner do
   subject(:runner) { described_class.new(:foo_runner) }
 
-  describe '.all' do
-    subject { described_class.all }
-
-    let(:runners) { { foo: foo_runner, bar: bar_runner } }
-    let(:foo_runner) { double }
-    let(:bar_runner) { double }
-
-    before { allow(Cch::Setup).to receive(:runners) { runners } }
-
-    it { is_expected.to eq [foo_runner, bar_runner] }
-  end
-
   describe '.where' do
     subject { described_class.where(options) }
 

@@ -2,27 +2,14 @@ require 'spec_helper'
 
 RSpec.describe Cch::Setup do
   describe '.configure' do
-    subject(:setup) { described_class.configure }
+    subject(:setup) { Cch.setup }
 
-    it 'configures the watch_commands' do
-      expect(setup.watcher_commands).to eq([
-        'git diff --name-only',
-        'git diff --name-only --staged',
-        'git ls-files --others --exclude-standard',
-        'git diff --name-only ..master'
-      ])
-    end
-
-    it 'configures the runners' do
-      expect(setup.runners[:rubocop]).to be_a Cch::Runner
-      expect(setup.runners[:haml_lint]).to be_a Cch::Runner
-      expect(setup.runners[:rspec]).to be_a Cch::Runner
-    end
-
-    it 'has the runners on' do
-      expect(setup.runners[:rubocop].on).to be true
-      expect(setup.runners[:haml_lint].on).to be false
-      expect(setup.runners[:rspec].on).to be true
+    it 'requires gem configuration files' do
+      expect(setup).to receive(:require).with('cch/config/logger')
+      expect(setup).to receive(:require).with('cch/config/watchers')
+      expect(setup).to receive(:require).with('cch/config/runners')
+      expect(setup).to receive(:load).with('Cchfile', true)
+      setup.configure
     end
   end
 end

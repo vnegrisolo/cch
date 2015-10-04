@@ -2,17 +2,17 @@ module Cch
   class Watcher
     include Commands::Shell
 
-    def self.files
-      new.files
+    class << self
+      attr_accessor :commands
+
+      def files
+        new.files(commands)
+      end
     end
 
-    def initialize(commands = nil)
-      @commands = commands || Cch.setup.watcher_commands
-    end
-
-    def files
-      files = @commands.flat_map { |command| backtiq_command(command) }.compact.sort.uniq
-      Cch.logger.info("watched files='#{files}'")
+    def files(commands)
+      files = commands.flat_map { |command| backtiq_command(command) }.compact.sort.uniq
+      Cch.logger.info("watching #{files.size.to_s.color(:yellow)} files=#{files}")
       files
     end
   end
