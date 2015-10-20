@@ -1,5 +1,6 @@
 Cch::Runner.configure :rubocop do |runner|
   runner.watch(/\.rb$/)
+  runner.watch(/\.rake$/)
 end
 
 Cch::Runner.configure :haml_lint, gem: 'haml-lint' do |runner|
