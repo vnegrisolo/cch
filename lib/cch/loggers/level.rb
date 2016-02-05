@@ -1,7 +1,7 @@
 module Cch
   module Loggers
     class Level
-      LEVELS = [:debug, :info, :error]
+      LEVELS = [:debug, :info, :error].freeze
 
       def self.all
         return @levels if @levels
