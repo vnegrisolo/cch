@@ -12,8 +12,11 @@ Cch::Runner.configure :rspec do |runner|
 
   runner.watch(%r{^spec/spec_helper.rb$}, proc { %w(spec) })
   runner.watch(%r{^spec/rails_helper.rb$}, proc { %w(spec) })
-  runner.watch(%r{^config/routes.rb$}, proc { %w(spec/routing) })
-  runner.watch(%r{^app/controllers/application_controller.rb$}, proc { %w(spec/controllers) })
+  runner.watch(%r{^config/routes.rb$}, proc { %w(spec/routing spec/requests) })
+  runner.watch(
+    %r{^app/controllers/application_controller.rb$},
+    proc { %w(spec/controllers spec/requests) }
+  )
 
   runner.watch(%r{^lib/(.+)\.rb$}, proc { |m| %W(spec/#{m[1]}_spec.rb spec/lib/#{m[1]}_spec.rb) })
   runner.watch(%r{^app/(.+)\.rb$}, proc { |m| %W(spec/#{m[1]}_spec.rb) })
