@@ -23,7 +23,7 @@ module Cch
       def where(options = {})
         runners = all
         runners = runners.select(&:on) if options[:on?]
-        if (names = [options[:name]].flatten.compact).size > 0
+        if (names = [options[:name]].flatten.compact).any?
           runners = runners.select { |r| names.include?(r.name) }
         end
         runners
@@ -55,7 +55,7 @@ module Cch
       message = "running #{name.to_s.color(:black, :green)}"
       message << " for #{files.size.to_s.color(:yellow)} files=#{files}"
       Cch.logger.info(message)
-      files.size > 0
+      files.any?
     end
   end
 end
