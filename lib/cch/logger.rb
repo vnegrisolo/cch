@@ -1,10 +1,13 @@
+require 'cch/loggers/level'
+require 'cch/loggers/stdout'
+
 module Cch
   class Logger
     attr_accessor :threshold, :implementation
 
     def initialize(options = {})
-      @threshold = options[:threshold]
-      @implementation = options[:implementation]
+      @threshold = options[:threshold] || :info
+      @implementation = options[:implementation] || Loggers::Stdout.new
     end
 
     Loggers::Level.all.each do |level_name, level|
@@ -16,7 +19,7 @@ module Cch
     private
 
     def log(level, message)
-      return unless implementation && level.allowed?(threshold)
+      return unless level.allowed?(threshold)
 
       implementation.log(level, message)
     end
