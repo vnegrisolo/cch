@@ -6,8 +6,6 @@ require 'cch/commands/shell'
 require 'cch/commands/file_system'
 require 'cch/watcher'
 require 'cch/runner'
-require 'cch/loggers/level'
-require 'cch/loggers/stdout'
 require 'cch/logger'
 require 'cch/setup'
 

@@ -5,7 +5,6 @@ RSpec.describe Cch::Setup do
     subject(:setup) { Cch.setup }
 
     it 'requires gem configuration files' do
-      expect(setup).to receive(:require).with('cch/config/logger')
       expect(setup).to receive(:require).with('cch/config/watchers')
       expect(setup).to receive(:require).with('cch/config/runners')
       expect(setup).to receive(:load).with('Cchfile', true)

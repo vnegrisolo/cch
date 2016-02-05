@@ -4,8 +4,11 @@
 lib = File.expand_path(File.dirname(__FILE__) + '/../lib')
 $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 
-File.open('Cchfile', 'w') do |file|
-  file.write <<STRING
-  Cch::Runner.run [:rubocop, :haml_lint, :rspec]
+file_content = <<STRING
+# Cch.logger.threshold = :info
+# Cch.logger.implementation = Cch::Loggers::Stdout.new
+
+Cch::Runner.run [:rubocop, :haml_lint, :rspec]
 STRING
-end
+
+File.open('Cchfile', 'w') { |file| file.write file_content }
