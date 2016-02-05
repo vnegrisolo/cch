@@ -18,7 +18,7 @@ RSpec.describe Cch::Runner do
     end
 
     context 'when filtering by name' do
-      let(:options) { { name: :bar } }
+      let(:options) { { name: 'bar' } }
 
       it { is_expected.to eq [bar_runner] }
     end
