@@ -10,13 +10,15 @@ RSpec.describe Cch::Commands::FileSystem do
   describe '#filter_files' do
     subject { file_system.filter_files(files, patterns) }
 
-    let(:files) { %w(f1.rb f2.rb f3.txt) }
+    let(:files) { %w(f1.rb f2.rb f3.txt app_controller spec/f4) }
 
     before do
       allow(File).to receive(:exist?).with('f1.rb') { true }
       allow(File).to receive(:exist?).with('f2.rb') { false }
       allow(File).to receive(:exist?).with('f3.txt') { true }
       allow(File).to receive(:exist?).with('texts/f3.txt') { true }
+      allow(File).to receive(:exist?).with('spec') { true }
+      allow(File).to receive(:exist?).with('spec/f4') { true }
     end
 
     context 'when the patterns is simple filter' do
@@ -33,6 +35,19 @@ RSpec.describe Cch::Commands::FileSystem do
 
       it 'filters files' do
         is_expected.to eq(%w(texts/f3.txt))
+      end
+    end
+
+    context 'when the patterns matches a folder' do
+      let(:patterns) do
+        {
+          /^app_controller$/ => proc { %w(spec) },
+          %r{ spec/* } => nil
+        }
+      end
+
+      it 'filters files' do
+        is_expected.to eq(%w(spec))
       end
     end
   end
