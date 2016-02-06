@@ -24,8 +24,9 @@ module Cch
         runners = all
         runners = runners.select(&:on) if options[:on?]
         if (names = [options[:name]].flatten.compact).any?
-          runners = runners.select { |r| names.include?(r.name) }
+          runners = runners.select { |r| names.include?(r.name.to_s) }
         end
+
         runners
       end
     end

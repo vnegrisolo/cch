@@ -16,13 +16,13 @@ CCH - Check on changes for ruby projects
 gem install cch
 ```
 
-Generates a `Cchfile` for project configuration:
+Generates a `Cchfile` for your project configuration:
 
 ```shell
 cch_install
 ```
 
-Configure through the `Cchfile` the way you want to run **cch**:
+Configure through the `Cchfile` what you want to run by **cch**:
 
 ```ruby
 Cch::Runner.run [:rubocop, :haml_lint, :rspec]
@@ -55,7 +55,6 @@ To release a new version, update the version number in `version.rb`, and then ru
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/vnegrisolo/cch. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://github.com/vnegrisolo/cch/blob/master/CONTRIBUTING.md) code of conduct.
-
 
 ## License
 
