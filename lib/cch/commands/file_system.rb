@@ -6,7 +6,8 @@ module Cch
           find_matched_files(files, pattern, transform)
         end
 
-        existing_files(filtered_files)
+        filtered_files = existing_files(filtered_files)
+        compact(filtered_files)
       end
 
       private
@@ -20,6 +21,16 @@ module Cch
 
       def existing_files(files)
         files.flatten.compact.sort.uniq.select { |f| File.exist?(f) }
+      end
+
+      def compact(files)
+        files.map { |file| file unless sub_file?(files, file) }.compact
+      end
+
+      def sub_file?(files, file)
+        files.each { |f| return true if file != f && file.start_with?(f) }
+
+        false
       end
     end
   end
