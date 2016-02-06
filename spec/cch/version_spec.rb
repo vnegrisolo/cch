@@ -2,6 +2,6 @@ require 'spec_helper'
 
 RSpec.describe Cch::VERSION do
   it 'has a version number' do
-    is_expected.to eq('0.5.0')
+    is_expected.to eq('0.6.0')
   end
 end
