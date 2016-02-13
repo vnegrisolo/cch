@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   end
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/}) || f.match(/^Cchfile$/)
+    f.match(%r{^(test|spec|features)/}) || f.match('cchfile.rb')
   end
   spec.bindir        = 'bin'
   spec.executables   = %w(cch cch_install)

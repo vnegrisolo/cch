@@ -1,5 +1,7 @@
 # cch
-CCH - Check on changes for ruby projects
+**CCH** - Check on changes for ruby projects
+
+**cch** will list all files that has been changed so far and run what you need with them (tests, code lints, etc).
 
 ## gem status
 
@@ -16,18 +18,6 @@ CCH - Check on changes for ruby projects
 gem install cch
 ```
 
-Generates a `Cchfile` for your project configuration:
-
-```shell
-cch_install
-```
-
-Configure through the `Cchfile` what you want to run by **cch**:
-
-```ruby
-Cch::Runner.run [:rubocop, :haml_lint, :rspec]
-```
-
 ## Usage
 
 ```shell
@@ -38,6 +28,19 @@ Or on run time, you can specify the runners:
 
 ```shell
 cch rspec rubocop
+```
+
+## Configuration
+
+After running **cch** for the first time, the script will create a config file for you: `cchfile.rb`.
+
+Configure through the `cchfile.rb` what you want to run by **cch**:
+
+```ruby
+# Cch.logger.threshold = :info
+# Cch.logger.implementation = Cch::Loggers::Stdout.new
+
+Cch::Runner.run [:rubocop, :haml_lint, :rspec]
 ```
 
 ## Development
