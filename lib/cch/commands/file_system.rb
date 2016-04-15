@@ -15,7 +15,9 @@ module Cch
       def find_matched_files(files, pattern, transform)
         files.flat_map do |file|
           matched = file.match(pattern)
-          transform ? transform.call(matched) : file if matched
+          if matched
+            transform ? transform.call(matched) : file
+          end
         end
       end
 
