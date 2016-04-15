@@ -3,6 +3,8 @@
 
 **cch** will list all files that has been changed so far and run what you need with them (tests, code lints, etc).
 
+In order words, it will use `git` to see the changes and then run a command like `rspec` with this files.
+
 ## gem status
 
 [![Build Status](https://travis-ci.org/vnegrisolo/cch.svg)](https://travis-ci.org/vnegrisolo/cch)
@@ -42,6 +44,17 @@ Configure through the `cchfile.rb` what you want to run by **cch**:
 
 Cch::Runner.run [:rubocop, :haml_lint, :rspec]
 ```
+
+**Cch** comes with some basic configuration for:
+
+- rspec
+- rubocop
+- haml_lint
+
+You can create your own configuration in your `cchfile.rb`. Use the following configuration files as the base for it:
+
+- [watcher](https://github.com/vnegrisolo/cch/blob/master/lib/cch/config/watchers.rb)
+- [runners](https://github.com/vnegrisolo/cch/blob/master/lib/cch/config/runners.rb)
 
 ## Development
 
