@@ -71,7 +71,15 @@ gem install --local pkg/cch*.gem
 
 ### Release a new version
 
-To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org/gems/cch).
+Change `version.rb` file, commit, push and then:
+
+```
+bundle exec rake release
+git push origin master
+git push origin --tags
+```
+
+This will deploy a new release on [rubygems.org](https://rubygems.org/gems/cch).
 
 ## Contributing
 
