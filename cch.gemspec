@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
     f.match(%r{^(test|spec|features)/}) || f.match('cchfile.rb')
   end
   spec.bindir        = 'bin'
-  spec.executables   = %w(cch cch_install)
+  spec.executables   = %w(cch)
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler'

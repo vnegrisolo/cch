@@ -1,15 +1,23 @@
 module Cch
   class Setup
+    LOCAL_CONFIG_FILE = '.cchfile.rb'.freeze
+    CONFIG_FILES = %w(watchers runners).freeze
+
     def configure
-      %w(watchers runners).each do |config_file|
-        require "cch/config/#{config_file}"
+      CONFIG_FILES.each do |file|
+        require "cch/config/#{file}"
       end
 
-      if File.exist?('Cchfile')
-        Cch.logger.warning('Deprecated => please rename the config file "Cchfile" to "cchfile.rb"')
-        load('Cchfile', true)
-      end
-      load('cchfile.rb', true) if File.exist?('cchfile.rb')
+      generate_local_config unless File.exist?(LOCAL_CONFIG_FILE)
+
+      load(LOCAL_CONFIG_FILE, true)
+    end
+
+    private
+
+    def generate_local_config
+      file_content = 'Cch::Runner.run [:rubocop, :haml_lint, :rspec]'
+      File.open(LOCAL_CONFIG_FILE, 'w') { |f| f.write file_content }
     end
   end
 end

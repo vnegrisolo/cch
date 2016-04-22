@@ -39,9 +39,6 @@ After running **cch** for the first time, the script will create a config file f
 Configure through the `cchfile.rb` what you want to run by **cch**:
 
 ```ruby
-# Cch.logger.threshold = :info
-# Cch.logger.implementation = Cch::Loggers::Stdout.new
-
 Cch::Runner.run [:rubocop, :haml_lint, :rspec]
 ```
 
@@ -64,7 +61,14 @@ You can create your own configuration in your `cchfile.rb`. Use the following co
 
 You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`.
+### Install locally
+
+```
+bundle exec rake install
+gem install --local pkg/cch*.gem
+```
+
+### Release a new version
 
 To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org/gems/cch).
 
