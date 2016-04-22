@@ -1,9 +1,17 @@
 # cch
-**CCH** - Check on changes for ruby projects
+**CCH** - Run your test suite for just changed files
 
-**cch** will list all files that has been changed so far and run what you need with them (tests, code lints, etc).
+You just need to run:
 
-In order words, it will use `git` to see the changes and then run a command like `rspec` with this files.
+```shell
+cch
+```
+
+And then **cch** will:
+
+1. List changed files using git commands
+2. Expand files using regexp
+3. Run with these files your **tests**, **code lints**
 
 ## gem status
 
@@ -26,7 +34,7 @@ gem install cch
 cch
 ```
 
-Or on run time, you can specify the runners:
+Or specify the runners:
 
 ```shell
 cch rspec rubocop
@@ -34,9 +42,7 @@ cch rspec rubocop
 
 ## Configuration
 
-After running **cch** for the first time, the script will create a config file for you: `cchfile.rb`.
-
-Configure through the `cchfile.rb` what you want to run by **cch**:
+After running **cch** for the first time, a config file is created with:
 
 ```ruby
 Cch::Runner.run [:rubocop, :haml_lint, :rspec, :cucumber]
@@ -54,11 +60,15 @@ You can create your own configuration in your `cchfile.rb`. Use the following co
 - [watcher](https://github.com/vnegrisolo/cch/blob/master/lib/cch/config/watchers.rb)
 - [runners](https://github.com/vnegrisolo/cch/blob/master/lib/cch/config/runners.rb)
 
+You can also change the default configurations for existing runners.
+
 ## Development
 
-1. checking out the repo
-2. run `bin/setup` to install dependencies
-3. run `bundle exec rake` to run the all necessary checks like documentation, code style and tests
+```shell
+git clone git@github.com:vnegrisolo/cch.git
+./bin/setup
+bundle exec rake
+```
 
 You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
@@ -75,8 +85,6 @@ Change `version.rb` file, commit, push and then:
 
 ```
 bundle exec rake release
-git push origin master
-git push origin --tags
 ```
 
 This will deploy a new release on [rubygems.org](https://rubygems.org/gems/cch).
