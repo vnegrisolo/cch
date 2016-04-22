@@ -23,7 +23,16 @@ module Cch
       setup.configure
 
       files = Watcher.files
-      Runner.where(on?: true, name: args).each { |runner| runner.run(files) }
+
+      runners(args).each { |runner| runner.run(files) }
+    end
+
+    private
+
+    def runners(args)
+      names = args.flatten.compact
+      query = names.any? ? { name: names } : { on?: true }
+      Runner.where(query)
     end
   end
 end

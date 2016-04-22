@@ -20,10 +20,10 @@ module Cch
         runners.values
       end
 
-      def where(options = {})
+      def where(query = {})
         runners = all
-        runners = runners.select(&:on) if options[:on?]
-        if (names = [options[:name]].flatten.compact).any?
+        runners = runners.select(&:on) if query[:on?]
+        if (names = [query[:name]].flatten.compact).any?
           runners = runners.select { |r| names.include?(r.name.to_s) }
         end
 

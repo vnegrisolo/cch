@@ -30,7 +30,7 @@ RSpec.describe Cch do
       let(:args) { [] }
 
       it 'fetches all the runners' do
-        expect(Cch::Runner).to have_received(:where).with(on?: true, name: [])
+        expect(Cch::Runner).to have_received(:where).with(on?: true)
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe Cch do
       let(:args) { %w(rubocop rspec) }
 
       it 'fetches the runners filtering by names' do
-        expect(Cch::Runner).to have_received(:where).with(on?: true, name: %w(rubocop rspec))
+        expect(Cch::Runner).to have_received(:where).with(name: %w(rubocop rspec))
       end
     end
 
