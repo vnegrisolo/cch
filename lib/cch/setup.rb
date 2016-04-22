@@ -16,7 +16,7 @@ module Cch
     private
 
     def generate_local_config
-      file_content = 'Cch::Runner.run [:rubocop, :haml_lint, :rspec]'
+      file_content = "#{Runner.name}.run #{Runner.runners.keys}"
       File.open(LOCAL_CONFIG_FILE, 'w') { |f| f.write file_content }
     end
   end

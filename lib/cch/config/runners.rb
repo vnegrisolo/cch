@@ -27,3 +27,7 @@ Cch::Runner.configure :rspec do |runner|
     end
   )
 end
+
+Cch::Runner.configure :cucumber do |runner|
+  runner.watch(/\.feature$/)
+end

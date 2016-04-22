@@ -39,7 +39,7 @@ After running **cch** for the first time, the script will create a config file f
 Configure through the `cchfile.rb` what you want to run by **cch**:
 
 ```ruby
-Cch::Runner.run [:rubocop, :haml_lint, :rspec]
+Cch::Runner.run [:rubocop, :haml_lint, :rspec, :cucumber]
 ```
 
 **Cch** comes with some basic configuration for:
@@ -47,6 +47,7 @@ Cch::Runner.run [:rubocop, :haml_lint, :rspec]
 - rspec
 - rubocop
 - haml_lint
+- cucumber
 
 You can create your own configuration in your `cchfile.rb`. Use the following configuration files as the base for it:
 
