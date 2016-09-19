@@ -96,3 +96,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/vnegri
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://github.com/vnegrisolo/cch/blob/master/LICENSE.md).
+test
